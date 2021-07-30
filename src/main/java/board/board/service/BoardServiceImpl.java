@@ -12,7 +12,7 @@ import board.board.mapper.BoardMapper;
 public class BoardServiceImpl implements BoardService {
 	
 	// DB 에 접근하는 DAO Bean 
-	@Autowired
+	@Autowired 
 	private BoardMapper boardMapper;
 	
 	@Override
@@ -23,6 +23,13 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void insertBoard(BoardDto board) throws Exception {
 		boardMapper.insertBoard(board);
+	}
+
+	@Override
+	public BoardDto selectBoardDetail(int id) throws Exception {
+		boardMapper.updateHit(id);
+		BoardDto board = boardMapper.selectBoardDetail(id);
+		return board;
 	}
 
 }
