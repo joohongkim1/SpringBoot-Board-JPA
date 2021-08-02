@@ -3,8 +3,8 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- mapper 의 네임 스페이스 지정 -->
-<mapper namespace="board.board.mapper.BoardMapper">
-	<select id="selectBoardList" resultType="board.board.dto.BoardDto">
+<mapper namespace="board.mapper.BoardMapper">
+	<select id="selectBoardList" resultType="board.dto.BoardDto">
 			SELECT
 				id,
 				title,
@@ -16,7 +16,7 @@
 				deleted_yn = 'N'
 			ORDER BY id DESC
 	</select>
-	<insert id="insertBoard" parameterType="board.board.dto.BoardDto">
+	<insert id="insertBoard" parameterType="board.dto.BoardDto">
 		INSERT INTO t_board
 		(
 			title, contents, creator_id
@@ -31,7 +31,7 @@
 		SET hit = hit + 1
 		WHERE id = #{id}
 	</update>
-	<select id="selectBoardDetail" parameterType="int" resultType="board.board.dto.BoardDto">
+	<select id="selectBoardDetail" parameterType="int" resultType="board.dto.BoardDto">
 		SELECT 
 			id, title, contents, hit, created_at, creator_id
 		FROM
@@ -39,7 +39,7 @@
 		WHERE
 			id = #{id} and deleted_yn = 'N'
 	</select>
-	<update id="updateBoard" parameterType="board.board.dto.BoardDto">
+	<update id="updateBoard" parameterType="board.dto.BoardDto">
 		UPDATE t_board
 		SET 
 			title = #{title},

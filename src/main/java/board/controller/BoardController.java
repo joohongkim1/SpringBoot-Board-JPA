@@ -1,4 +1,4 @@
-package board.board.controller;
+package board.controller;
 
 import java.util.List;
 import org.slf4j.Logger;
@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import board.board.dto.BoardDto;
-import board.board.service.BoardService;
+import board.dto.BoardDto;
+import board.service.BoardService;
 
 // 컨트롤러 : 클라이언트의 요청을 받아 필요한 비즈니스 로직을 호출하고 결과를 포함해 응답을 주는 디스패처 역할
 /* 프로세스
@@ -32,7 +32,7 @@ public class BoardController {
 	@RequestMapping("/board/openBoardList.do")
 	public ModelAndView openBoardList() throws Exception {
 		
-		log.debug("openBoardList");
+//		log.debug("openBoardList");
 		// 호출된 요청의 결과를 보여줄 뷰 지정
 		// templates 폴더 아래의 board/boardList.html 파일을 의미
 		ModelAndView mv = new ModelAndView("/board/boardList");
