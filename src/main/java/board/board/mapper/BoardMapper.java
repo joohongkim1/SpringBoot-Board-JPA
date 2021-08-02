@@ -15,4 +15,10 @@ public interface BoardMapper {
 	void updateHit(int id);
 
 	BoardDto selectBoardDetail(int id);
+
+	void updateBoard(BoardDto board);
+
+	void deleteBoard(int id);
+	
+	
 }

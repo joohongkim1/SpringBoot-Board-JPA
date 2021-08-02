@@ -32,4 +32,16 @@ public class BoardServiceImpl implements BoardService {
 		return board;
 	}
 
+	@Override
+	public void updateBoard(BoardDto board) {
+		boardMapper.updateBoard(board);
+	}
+
+	@Override
+	public void deleteBoard(int id) {
+		boardMapper.deleteBoard(id);
+	}
+	
+	
+
 }

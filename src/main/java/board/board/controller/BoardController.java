@@ -1,6 +1,8 @@
 package board.board.controller;
 
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,12 +23,16 @@ import board.board.service.BoardService;
 @Controller
 public class BoardController {
 	
+	private Logger log = LoggerFactory.getLogger(this.getClass());
+	
 	// 비즈니스 로직을 처리하는 서비스 Bean 연결
 	@Autowired
 	private BoardService boardService;
 	
 	@RequestMapping("/board/openBoardList.do")
 	public ModelAndView openBoardList() throws Exception {
+		
+		log.debug("openBoardList");
 		// 호출된 요청의 결과를 보여줄 뷰 지정
 		// templates 폴더 아래의 board/boardList.html 파일을 의미
 		ModelAndView mv = new ModelAndView("/board/boardList");
@@ -56,5 +62,19 @@ public class BoardController {
 		mv.addObject("board", board);
 		return mv;
 	}
+	
+	@RequestMapping("/board/updateBoard.do")
+	public String updateBoard(BoardDto board) throws Exception {
+		boardService.updateBoard(board);
+		return "redirect:/board/openBoardList.do";
+				
+	}
+	
+	@RequestMapping("/board/deleteBoard.do")
+	public String deleteBoard(int id) throws Exception {
+		boardService.deleteBoard(id);
+		return "redirect:/board/openBoardList.do";
+	}
+	
 
 }
