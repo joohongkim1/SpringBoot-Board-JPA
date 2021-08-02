@@ -16,7 +16,7 @@
 				deleted_yn = 'N'
 			ORDER BY id DESC
 	</select>
-	<insert id="insertBoard" parameterType="board.dto.BoardDto">
+	<insert id="insertBoard" parameterType="board.dto.BoardDto" useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO t_board
 		(
 			title, contents, creator_id
@@ -57,4 +57,43 @@
 		WHERE
 			id = #{id}
 	</update>
+	<insert id="insertBoardFileList" parameterType="board.dto.BoardFileDto">
+			INSERT INTO t_file
+			( 
+				board_id, 
+				original_file_name, 
+				stored_file_path, 
+				file_size, 
+				creator_id, 
+				created_datetime
+			)
+			VALUES	
+		<foreach collection="list" item="item" separator=",">
+			(
+				#{item.boardId},
+				#{item.originalFileName},
+				#{item.storedFilePath},
+				#{item.fileSize},
+				'admin',
+				NOW()
+			)
+		</foreach>
+	</insert>
+	<select id="selectBoardFileList" parameterType="int" resultType="board.dto.BoardFileDto">
+		SELECT id, board_id, original_file_name, FORMAT(ROUND(file_size / 1024), 0) AS file_size
+		FROM t_file
+		WHERE board_id = #{boardId} AND deleted_yn = 'N'
+	</select>
+	<select id="selectBoardFileInfo" parameterType="map" resultType="board.dto.BoardFileDto">
+		SELECT 
+			original_file_name,
+			stored_file_path,
+			file_size
+		FROM
+			t_file
+		WHERE
+			id = #{id}
+			AND board_id = #{boardId}
+			AND deleted_yn = 'N'
+	</select>
 </mapper>
