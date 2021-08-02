@@ -4,11 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import board.dto.BoardDto;
 import board.mapper.BoardMapper;
 
 @Service
+@Transactional
 public class BoardServiceImpl implements BoardService {
 	
 	// DB 에 접근하는 DAO Bean 
