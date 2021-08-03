@@ -96,4 +96,14 @@
 			AND board_id = #{boardId}
 			AND deleted_yn = 'N'
 	</select>
+	<update id="deleteBoardFile" parameterType="map">
+		UPDATE
+			t_file
+		SET
+			deleted_yn = 'Y',
+			updated_datetime = NOW(),
+			updater_id = 'admin'
+		WHERE
+			id = #{id} AND board_id=#{boardId}
+	</update>
 </mapper>

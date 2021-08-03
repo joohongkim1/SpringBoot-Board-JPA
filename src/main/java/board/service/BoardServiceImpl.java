@@ -66,6 +66,11 @@ public class BoardServiceImpl implements BoardService {
 	public BoardFileDto selectBoardFileInfo(int id, int boardId) throws Exception {
 		return boardMapper.selectBoardFileInfo(id, boardId);
 	}
+
+	@Override
+	public void deleteBoardFile(int id, int boardId) {
+		boardMapper.deleteBoardFile(id, boardId);
+	}
 	
 	
 	

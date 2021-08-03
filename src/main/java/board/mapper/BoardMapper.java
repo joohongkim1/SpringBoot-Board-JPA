@@ -27,4 +27,6 @@ public interface BoardMapper {
 	List<BoardFileDto> selectBoardFileList(int id);
 	
 	BoardFileDto selectBoardFileInfo(@Param("id") int id, @Param("boardId") int boardId);
+
+	void deleteBoardFile(@Param("id") int id, @Param("boardId") int boardId);
 }

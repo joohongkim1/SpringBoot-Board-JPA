@@ -105,5 +105,11 @@ public class BoardController {
 		}
 	}
 	
+	@RequestMapping("/board/deleteBoardFile.do")
+	public String deleteBoardFile(@RequestParam int id, @RequestParam int boardId) throws Exception {
+		boardService.deleteBoardFile(id, boardId);
+		return "redirect:/board/openBoardDetail.do?id=" + boardId;
+	}
+	
 
 }
